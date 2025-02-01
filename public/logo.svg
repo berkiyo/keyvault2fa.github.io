@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0H16V8Z" fill="#007AFF"/>
+  <path d="M16 8H24V24C24 28.4183 20.4183 32 16 32V8Z" fill="#5856D6"/>
+  <text x="40" y="22" font-family="SF Pro Display, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1C1C1E">KeyVault</text>
+</svg> 
