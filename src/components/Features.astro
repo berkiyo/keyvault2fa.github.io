@@ -1,0 +1,86 @@
+---
+const features = [
+  {
+    icon: "🔐",
+    name: "Store All Your 2FA Codes",
+    description: "Easily store and manage all your 2FA codes in one secure location. No more juggling between multiple apps or notes."
+  },
+  {
+    icon: "🔎",
+    name: "Manually Add 2FA Codes",
+    description: "Flexibility at its best! Add your 2FA codes manually to suit your preferences and keep your data organized."
+  },
+  {
+    icon: "🔦",
+    name: "Scan 2FA Codes",
+    description: "Quickly add 2FA codes by scanning QR codes using your device's camera. No hassle, no delays."
+  },
+  {
+    icon: "🗃️",
+    name: "Sort and Organize",
+    description: "Sort your codes alphabetically or by most used for faster access. Stay organized, stay efficient."
+  },
+  {
+    icon: "☁️",
+    name: "iCloud Sync",
+    description: "Keep your 2FA codes synchronized across all your Apple devices. Access your codes anytime, anywhere."
+  },
+  {
+    icon: "📲",
+    name: "Apple Watch Support",
+    description: "Access your 2FA codes directly on your wrist! View your codes on your Apple Watch for ultimate convenience."
+  }
+];
+---
+
+<section id="features" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+      <h2 class="text-base font-semibold leading-7 text-primary">Features You'll Love</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-dark dark:text-light sm:text-4xl">
+        Everything you need for secure 2FA
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+        KeyVault makes managing your two-factor authentication codes easier and more secure than ever.
+      </p>
+    </div>
+    
+    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        {features.map((feature) => (
+          <div class="relative group">
+            <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-sm transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:-translate-y-1 overflow-hidden">
+              <div class="p-8">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-900/20 text-2xl">
+                      {feature.icon}
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <h3 class="text-lg font-semibold leading-7 text-dark dark:text-light">
+                    {feature.name}
+                  </h3>
+                  <p class="mt-2 text-base leading-7 text-gray-600 dark:text-gray-300">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .group:hover .group-hover\:shadow-lg {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .group:hover .group-hover\:-translate-y-1 {
+    transform: translateY(-4px);
+  }
+</style> 

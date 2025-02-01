@@ -1,0 +1,251 @@
+---
+const screenshots = [
+  {
+    src: "/images/screenshots-iphone/1.jpg",
+    alt: "KeyVault Screenshot 1"
+  },
+  {
+    src: "/images/screenshots-iphone/2.jpg",
+    alt: "KeyVault Screenshot 2"
+  },
+  {
+    src: "/images/screenshots-iphone/3.jpg",
+    alt: "KeyVault Screenshot 3"
+  },
+  {
+    src: "/images/screenshots-iphone/4.jpg",
+    alt: "KeyVault Screenshot 4"
+  },
+  {
+    src: "/images/screenshots-iphone/5.jpg",
+    alt: "KeyVault Screenshot 5"
+  },
+  {
+    src: "/images/screenshots-iphone/6.jpg",
+    alt: "KeyVault Screenshot 6"
+  },
+  {
+    src: "/images/screenshots-iphone/7.jpg",
+    alt: "KeyVault Screenshot 7"
+  }
+];
+
+// Double the screenshots for smooth infinite scroll
+const allScreenshots = [...screenshots, ...screenshots];
+---
+
+<section id="gallery" class="py-24 sm:py-32 bg-light dark:bg-dark overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:text-center">
+      <h2 class="text-base font-semibold leading-7 text-primary">Gallery</h2>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-dark dark:text-light sm:text-4xl">
+        Beautiful, Intuitive Interface
+      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+        Experience KeyVault's modern design and seamless user experience across all your devices.
+      </p>
+    </div>
+
+    <div class="mt-16 relative">
+      <!-- Gradient Overlays -->
+      <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-light dark:from-dark to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-light dark:from-dark to-transparent z-10 pointer-events-none"></div>
+
+      <!-- Navigation Buttons -->
+      <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 rounded-full p-3 shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary" onclick="scrollGallery('left')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-900 dark:text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 rounded-full p-3 shadow-lg hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary" onclick="scrollGallery('right')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-900 dark:text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+
+      <!-- Scrolling Container -->
+      <div class="gallery-container relative">
+        <div id="gallery-track" class="gallery-track flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6">
+          {allScreenshots.map((screenshot, index) => (
+            <div class="flex-none w-[263px] snap-center group">
+              <div class="relative h-[570px] rounded-2xl overflow-hidden cursor-pointer shadow-md transition-all duration-300 bg-[#f5f5f7] dark:bg-[#1c1c1e]" onclick={`openModal('${screenshot.src}')`}>
+                <img
+                  src={screenshot.src}
+                  alt={screenshot.alt}
+                  class="absolute inset-0 h-full w-full object-contain transition-all duration-300 ease-in-out group-hover:-translate-y-2"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+  <div class="relative w-full h-full flex items-center justify-center">
+    <img id="modalImage" src="" alt="Full size screenshot" class="max-h-[85vh] w-auto object-contain" />
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  let autoScrollInterval: number;
+  const track = document.getElementById('gallery-track');
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage') as HTMLImageElement;
+  let isScrolling = false;
+  
+  function scrollGallery(direction: 'left' | 'right') {
+    if (!track || isScrolling) return;
+    
+    isScrolling = true;
+    const scrollAmount = 280 + 24; // image width + gap
+    const currentScroll = track.scrollLeft;
+    const targetScroll = direction === 'left' 
+      ? currentScroll - scrollAmount 
+      : currentScroll + scrollAmount;
+    
+    track.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+
+    // Reset isScrolling after animation completes
+    setTimeout(() => {
+      isScrolling = false;
+    }, 500);
+  }
+
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+      if (!track || isScrolling) return;
+      
+      const isAtEnd = track.scrollLeft >= (track.scrollWidth - track.clientWidth - 100);
+      
+      if (isAtEnd) {
+        isScrolling = true;
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          isScrolling = false;
+        }, 500);
+      } else {
+        scrollGallery('right');
+      }
+    }, 4000);
+  }
+
+  // Modal functions
+  function openModal(imageSrc: string) {
+    if (!modal || !modalImage) return;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    // Set src after a small delay to ensure transition works
+    setTimeout(() => {
+      if (modalImage) {
+        modalImage.src = imageSrc;
+        modalImage.classList.add('scale-100');
+      }
+    }, 50);
+    clearInterval(autoScrollInterval);
+  }
+
+  function closeModal() {
+    if (!modal || !modalImage) return;
+    modalImage.classList.remove('scale-100');
+    modalImage.classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modalImage.src = '';
+      modalImage.classList.remove('scale-95');
+      startAutoScroll();
+    }, 200);
+  }
+
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Close modal on click outside
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Start auto-scroll
+  startAutoScroll();
+
+  // Pause on hover or touch
+  track?.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+  track?.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+
+  // Resume on mouse leave or touch end
+  track?.addEventListener('mouseleave', () => {
+    if (!modal?.classList.contains('flex')) {
+      startAutoScroll();
+    }
+  });
+  track?.addEventListener('touchend', () => {
+    if (!modal?.classList.contains('flex')) {
+      startAutoScroll();
+    }
+  });
+</script>
+
+<style>
+  .gallery-container {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .overflow-x-auto {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .group > div {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .group:hover > div {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-track {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  #modalImage {
+    max-width: 95vw;
+    height: auto;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+  }
+
+  #modalImage.scale-100 {
+    transform: scale(1);
+  }
+
+  .scale-95 {
+    transform: scale(0.95) !important;
+  }
+
+  img {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+</style> 

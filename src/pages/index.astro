@@ -1,216 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import ProFeatures from '../components/ProFeatures.astro';
+import Gallery from '../components/Gallery.astro';
+import Footer from '../components/Footer.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="KeyVault OTP 2FA Authenticator - Secure Two-Factor Authentication">
+	<Navigation />
 	<main>
-		<!-- Hero Section -->
-		<section class="relative overflow-hidden bg-gradient-to-b from-light to-white dark:from-dark dark:to-dark py-20 sm:py-32">
-			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-				<div class="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
-					<!-- Text Content -->
-					<div class="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
-						<h1 class="text-4xl font-bold tracking-tight text-dark dark:text-light sm:text-6xl">
-							Secure Your Online Accounts with KeyVault
-						</h1>
-						<p class="mt-6 text-lg text-gray-600 dark:text-gray-300">
-							The ultimate tool for managing your two-factor authentication (2FA) codes, combining simplicity, security, and seamless functionality.
-						</p>
-						<div class="mt-8 flex flex-wrap gap-x-6 gap-y-4">
-							<a href="https://apps.apple.com/au/app/keyvault-otp-2fa-authenticator/id6739465915" 
-							   class="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-								Download for iOS
-							</a>
-							<a href="#features" 
-							   class="rounded-lg bg-gray-100 dark:bg-gray-800 px-6 py-3 text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">
-								Learn More
-							</a>
-						</div>
-					</div>
-					
-					<!-- App Screenshot -->
-					<div class="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
-						<div class="relative mx-auto w-full max-w-lg lg:max-w-xl">
-							<img
-								class="w-full rounded-2xl shadow-xl ring-1 ring-gray-400/10 dark:ring-white/10"
-								src="/app-screenshot.png"
-								alt="KeyVault OTP 2FA Authenticator App Screenshot"
-								width="600"
-								height="1200"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Features Section -->
-		<section id="features" class="py-24 sm:py-32">
-			<div class="mx-auto max-w-7xl px-6 lg:px-8">
-				<div class="mx-auto max-w-2xl lg:text-center">
-					<h2 class="text-base font-semibold leading-7 text-primary">Features You'll Love</h2>
-					<p class="mt-2 text-3xl font-bold tracking-tight text-dark dark:text-light sm:text-4xl">
-						Everything you need for secure 2FA
-					</p>
-					<p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-						KeyVault makes managing your two-factor authentication codes easier and more secure than ever.
-					</p>
-				</div>
-				
-				<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-					<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-						{[
-							{
-								icon: "🔐",
-								name: "Store All Your 2FA Codes",
-								description: "Easily store and manage all your 2FA codes in one secure location. No more juggling between multiple apps or notes."
-							},
-							{
-								icon: "🔎",
-								name: "Manually Add 2FA Codes",
-								description: "Flexibility at its best! Add your 2FA codes manually to suit your preferences and keep your data organized."
-							},
-							{
-								icon: "🔦",
-								name: "Scan 2FA Codes",
-								description: "Quickly add 2FA codes by scanning QR codes using your device's camera. No hassle, no delays."
-							},
-							{
-								icon: "🗃️",
-								name: "Sort and Organize",
-								description: "Sort your codes alphabetically or by most used for faster access. Stay organized, stay efficient."
-							},
-							{
-								icon: "☁️",
-								name: "iCloud Sync",
-								description: "Keep your 2FA codes synchronized across all your Apple devices. Access your codes anytime, anywhere."
-							},
-							{
-								icon: "📲",
-								name: "Apple Watch Support",
-								description: "Access your 2FA codes directly on your wrist! View your codes on your Apple Watch for ultimate convenience."
-							}
-						].map((feature) => (
-							<div class="flex flex-col">
-								<dt class="text-2xl mb-2">{feature.icon}</dt>
-								<dt class="text-base font-semibold leading-7 text-dark dark:text-light">
-									{feature.name}
-								</dt>
-								<dd class="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
-									<p class="flex-auto">{feature.description}</p>
-								</dd>
-							</div>
-						))}
-					</dl>
-				</div>
-			</div>
-		</section>
-
-		<!-- Pro Features Section -->
-		<section class="relative isolate overflow-hidden bg-primary py-24 sm:py-32">
-			<div class="mx-auto max-w-7xl px-6 lg:px-8">
-				<div class="mx-auto max-w-2xl lg:text-center">
-					<h2 class="text-base font-semibold leading-7 text-white">Go Pro</h2>
-					<p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-						Unlock Premium Features
-					</p>
-					<p class="mt-6 text-lg leading-8 text-white/90">
-						Take your 2FA experience to the next level with KeyVault Pro.
-					</p>
-				</div>
-				
-				<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-					<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-						{[
-							{
-								icon: "🔝",
-								name: "Categorize Your Codes",
-								description: "Group your codes by category (e.g., Work, Personal, Banking) for a more streamlined experience."
-							},
-							{
-								icon: "🎨",
-								name: "Custom Themes",
-								description: "Make KeyVault your own by choosing from 10 beautifully designed themes. Match your style while managing security."
-							},
-							{
-								icon: "🔒",
-								name: "Enhanced Security",
-								description: "Add an extra layer of security with biometric authentication or a secure PIN. Your data, your rules."
-							},
-							{
-								icon: "📱",
-								name: "Custom Categories",
-								description: "Personalize your organization! Create unlimited custom categories to fit your unique needs."
-							}
-						].map((feature) => (
-							<div class="flex flex-col">
-								<dt class="text-2xl mb-2">{feature.icon}</dt>
-								<dt class="text-base font-semibold leading-7 text-white">
-									{feature.name}
-								</dt>
-								<dd class="mt-1 flex flex-auto flex-col text-base leading-7 text-white/90">
-									<p class="flex-auto">{feature.description}</p>
-								</dd>
-							</div>
-						))}
-					</dl>
-				</div>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer class="bg-light dark:bg-dark py-12 mt-12">
-			<div class="mx-auto max-w-7xl px-6 lg:px-8">
-				<div class="xl:grid xl:grid-cols-3 xl:gap-8">
-					<div class="space-y-8">
-						<img
-							class="h-7"
-							src="/logo.svg"
-							alt="KeyVault"
-						/>
-						<p class="text-sm leading-6 text-gray-600 dark:text-gray-300">
-							Secure your online accounts with KeyVault OTP 2FA Authenticator.
-						</p>
-					</div>
-					<div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-						<div class="md:grid md:grid-cols-2 md:gap-8">
-							<div>
-								<h3 class="text-sm font-semibold leading-6 text-dark dark:text-light">Legal</h3>
-								<ul role="list" class="mt-6 space-y-4">
-									<li>
-										<a href="/privacy" class="text-sm leading-6 text-gray-600 dark:text-gray-300 hover:text-primary">
-											Privacy Policy
-										</a>
-									</li>
-									<li>
-										<a href="/terms" class="text-sm leading-6 text-gray-600 dark:text-gray-300 hover:text-primary">
-											Terms of Service
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="mt-10 md:mt-0">
-								<h3 class="text-sm font-semibold leading-6 text-dark dark:text-light">Download</h3>
-								<ul role="list" class="mt-6 space-y-4">
-									<li>
-										<a href="https://apps.apple.com/au/app/keyvault-otp-2fa-authenticator/id6739465915" class="text-sm leading-6 text-gray-600 dark:text-gray-300 hover:text-primary">
-											App Store
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mt-16 border-t border-gray-900/10 dark:border-white/10 pt-8 sm:mt-20 lg:mt-24">
-					<p class="text-xs leading-5 text-gray-500 dark:text-gray-400">
-						&copy; {new Date().getFullYear()} KeyVault. All rights reserved.
-					</p>
-				</div>
-			</div>
-		</footer>
+		<Hero />
+		<Gallery />
+		<Features />
+		<ProFeatures />
 	</main>
+	<Footer />
 </Layout>
+
+<style>
+	main {
+		width: 100%;
+	}
+</style>
